@@ -73,8 +73,8 @@ const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Where Nights Come Alive</h1>
-        <p className="mb-6 text-lg md:text-xl">Craft cocktails, live music, and unforgettable vibes.</p>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">Where Nights Come <span className='text-yellow-500'> Alive</span></h1>
+        <p className="mb-6 text-lg md:text-xl">Asian, Chinese, Thai, Momos, Salad, Desserts</p>
 
         {/* Open/Closed Status */}
         <div className={`mb-6 font-semibold inline-block py-2 px-3 rounded-xl ${isOpen ? 'bg-green-600 animate-pulse' : 'bg-red-600'}`}>

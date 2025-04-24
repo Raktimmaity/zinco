@@ -3,7 +3,7 @@ import aboutImage from "../assets/img/about.jpg";
 
 const About = () => {
   return (
-    <section id="about" className="bg-gray-900 text-white py-28 px-32">
+    <section id="about" className="bg-gray-900 text-white py-32 px-32">
       <div className="container mx-auto flex flex-col md:flex-row items-center gap-10 relative">
         {/* Image with background shape */}
         <div className="w-full md:w-1/2 relative flex justify-center items-center">
