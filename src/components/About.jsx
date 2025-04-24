@@ -6,16 +6,15 @@ const About = () => {
     <section id="about" className="bg-gray-900 text-white py-16 px-32">
       <div className="container mx-auto flex flex-col md:flex-row items-center gap-10 relative">
         {/* Image with background shape */}
-        <div className="md:w-1/2 relative">
-          {/* Rectangular shape behind image */}
-          <div className="absolute top-6 left-6 w-[400px] h-full bg-yellow-400 rounded-xl z-0" />
+        <div className="w-full md:w-1/2 relative flex justify-center items-center">
+          {/* Yellow Rectangular Shape Behind Image */}
+          <div className="absolute top-4 left-4 w-[85%] md:w-[400px] h-full bg-yellow-400 rounded-xl z-0" />
 
-          {/* Image with transition for slower animation effect */}
+          {/* Main Image */}
           <img
             src={aboutImage}
             alt="Bar Interior"
-            className="relative z-10 rounded-xl shadow-lg transform transition-transform duration-700 ease-in-out hover:scale-105"
-            width={400}
+            className="relative z-10 w-[85%] max-w-[400px] h-auto rounded-xl shadow-lg transform transition-transform duration-700 ease-in-out hover:scale-105"
           />
         </div>
 
@@ -26,7 +25,13 @@ const About = () => {
           </h2>
 
           <p className="text-gray-300 leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi eius doloremque, non perferendis omnis illo rerum accusamus officiis, eos ut natus quis iusto vitae commodi. Commodi dolores iure voluptas enim. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci maxime commodi et ea, placeat nihil laborum fugit harum suscipit, amet quod minima consequatur odit quaerat quia, ipsum eveniet! Non, veritatis?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi eius
+            doloremque, non perferendis omnis illo rerum accusamus officiis, eos
+            ut natus quis iusto vitae commodi. Commodi dolores iure voluptas
+            enim. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Adipisci maxime commodi et ea, placeat nihil laborum fugit harum
+            suscipit, amet quod minima consequatur odit quaerat quia, ipsum
+            eveniet! Non, veritatis?
           </p>
         </div>
       </div>

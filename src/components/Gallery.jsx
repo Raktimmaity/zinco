@@ -74,7 +74,7 @@ const Gallery = () => {
                 alt={img.caption}
                 className="rounded-lg hover:scale-105 transition-transform duration-300 shadow-md"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300 rounded-lg flex items-center justify-center text-sm">
+              <div className="absolute inset-0 bg-black/60 bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300 rounded-lg flex items-center justify-center text-sm">
                 <span className="text-yellow-400 font-semibold">{img.caption}</span>
               </div>
             </div>
