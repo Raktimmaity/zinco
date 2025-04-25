@@ -118,7 +118,7 @@ const Hero = () => {
         {renderStatusMessage()}
         <br />
         <a
-          href="#menu"
+          href="#about"
           className="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-6 py-3 rounded-lg transition animate-bounce"
         >
           Explore More <i className="fa-regular fa-circle-down"></i>
