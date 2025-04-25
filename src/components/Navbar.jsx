@@ -207,7 +207,7 @@ const Navbar = () => {
           <input
             type="text"
             placeholder="Full Name"
-            className={`w-full px-4 py-2 border rounded outline-none ${
+            className={`w-full px-4 py-2 border border-gray-500 rounded outline-none ${
               signupError && !signupName ? "border-red-500 animate-shake" : ""
             }`}
             value={signupName}
@@ -216,7 +216,7 @@ const Navbar = () => {
           <input
             type="email"
             placeholder="Email"
-            className={`w-full px-4 py-2 border rounded outline-none ${
+            className={`w-full px-4 py-2 border border-gray-500 rounded outline-none ${
               signupError && !signupEmail ? "border-red-500 animate-shake" : ""
             }`}
             value={signupEmail}
@@ -225,7 +225,7 @@ const Navbar = () => {
           <input
             type="password"
             placeholder="Password"
-            className={`w-full px-4 py-2 border rounded outline-none ${
+            className={`w-full px-4 py-2 border border-gray-500 rounded outline-none ${
               signupError && !signupPassword ? "border-red-500 animate-shake" : ""
             }`}
             value={signupPassword}
@@ -243,7 +243,7 @@ const Navbar = () => {
           <input
             type="email"
             placeholder="Email"
-            className={`w-full px-4 py-2 border rounded outline-none ${
+            className={`w-full px-4 py-2 border border-gray-500 rounded outline-none ${
               loginError && !loginEmail ? "border-red-500 animate-shake" : ""
             }`}
             value={loginEmail}
@@ -252,7 +252,7 @@ const Navbar = () => {
           <input
             type="password"
             placeholder="Password"
-            className={`w-full px-4 py-2 border rounded outline-none ${
+            className={`w-full px-4 py-2 border border-gray-500 rounded outline-none ${
               loginError && !loginPassword ? "border-red-500 animate-shake" : ""
             }`}
             value={loginPassword}
