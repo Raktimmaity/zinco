@@ -121,7 +121,10 @@ const Navbar = () => {
             </button>
           </div>
 
-          <button className="md:hidden text-yellow-400 z-50" onClick={toggleMenu}>
+          <button
+            className="md:hidden text-yellow-400 z-50"
+            onClick={toggleMenu}
+          >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
@@ -155,8 +158,20 @@ const Navbar = () => {
       </header>
 
       {/* Booking Table Modal */}
-      <Modal show={showBooking} onClose={() => setShowBooking(false)} title="Book a Table">
+      <Modal
+        show={showBooking}
+        onClose={() => setShowBooking(false)}
+        title="Book a Table"
+      >
         <form className="space-y-4">
+          <select
+            className="w-full px-4 py-2 border border-gray-500 rounded outline-none"
+            required
+          >
+            <option value="">Select Area</option>
+            <option value="bar">Bar</option>
+            <option value="restaurant">Restaurant</option>
+          </select>
           <input
             type="text"
             placeholder="Full Name"
