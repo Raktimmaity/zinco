@@ -54,8 +54,8 @@ const Reviews = () => {
   return (
     <section id="reviews" className="bg-gray-900 text-white py-16 px-4">
       <div className="container mx-auto max-w-6xl">
-        <h2 className="text-4xl text-yellow-400 font-bold text-center mb-10 relative inline-block after:block after:w-24 after:h-1 after:bg-yellow-400 after:mt-2 after:mx-auto">
-          What People Say
+        <h2 className="text-4xl text-white font-bold text-center mb-10 relative inline-block after:block after:w-24 after:h-1 after:bg-yellow-400 after:mt-2 after:mx-auto">
+          What <span className='text-yellow-400'> People</span> Say
         </h2>
 
         <div

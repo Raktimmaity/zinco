@@ -10,7 +10,7 @@ const Modal = ({ show, onClose, title, children }) => {
     <AnimatePresence>
       {show && (
         <motion.div
-          className="fixed inset-0 z-50 bg-black bg-opacity-60 flex items-center justify-center"
+          className="fixed inset-0 z-50 bg-black/50 bg-opacity-60 flex items-center justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -24,7 +24,7 @@ const Modal = ({ show, onClose, title, children }) => {
           >
             <button
               onClick={onClose}
-              className="absolute top-3 right-4 text-xl font-bold text-gray-500 hover:text-black"
+              className="absolute top-3 right-4 text-xl font-bold text-gray-500 cursor-pointer hover:text-black"
             >
               &times;
             </button>
@@ -125,7 +125,7 @@ const Navbar = () => {
         }`}
       >
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="text-3xl md:text-4xl font-bold tracking-wider text-yellow-400">
+          <div className="text-3xl md:text-4xl font-bold tracking-wider text-yellow-400 ">
             <NavLink to="/">
               <span className="text-white">Miss</span>Ginko
             </NavLink>
@@ -146,13 +146,13 @@ const Navbar = () => {
 
           <div className="hidden md:flex gap-4 items-center">
             <button
-              className="bg-yellow-400 text-white hover:text-gray-900 font-bold px-4 py-2 rounded-full"
+              className="bg-yellow-400 text-white hover:text-gray-900 font-bold px-4 py-2 rounded-full cursor-pointer"
               onClick={() => setShowSignup(true)}
             >
               Sign Up
             </button>
             <button
-              className="text-yellow-400 hover:text-yellow-500"
+              className="text-yellow-400 hover:text-yellow-500 cursor-pointer"
               onClick={() => setShowLogin(true)}
             >
               Login
@@ -231,7 +231,7 @@ const Navbar = () => {
             value={signupPassword}
             onChange={(e) => setSignupPassword(e.target.value)}
           />
-          <button type="submit" className="bg-yellow-400 w-full py-2 rounded text-white font-bold">
+          <button type="submit" className="bg-yellow-400 w-full py-2 rounded text-white font-bold hover:bg-yellow-500 cursor-pointer">
             Register
           </button>
         </form>
@@ -243,7 +243,7 @@ const Navbar = () => {
           <input
             type="email"
             placeholder="Email"
-            className={`w-full px-4 py-2 border rounded ${
+            className={`w-full px-4 py-2 border rounded outline-none ${
               loginError && !loginEmail ? "border-red-500 animate-shake" : ""
             }`}
             value={loginEmail}
@@ -252,13 +252,13 @@ const Navbar = () => {
           <input
             type="password"
             placeholder="Password"
-            className={`w-full px-4 py-2 border rounded ${
+            className={`w-full px-4 py-2 border rounded outline-none ${
               loginError && !loginPassword ? "border-red-500 animate-shake" : ""
             }`}
             value={loginPassword}
             onChange={(e) => setLoginPassword(e.target.value)}
           />
-          <button type="submit" className="bg-yellow-400 w-full py-2 rounded text-white font-bold">
+          <button type="submit" className="bg-yellow-400 w-full py-2 rounded text-white font-bold hover:bg-yellow-500 cursor-pointer">
             Login
           </button>
         </form>

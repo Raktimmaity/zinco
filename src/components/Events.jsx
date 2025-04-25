@@ -14,7 +14,7 @@ const Events = () => {
       {/* Content */}
       <div className="relative container mx-auto max-w-4xl z-10">
         <h2 className="text-4xl font-bold text-yellow-400 text-center mb-10">
-          Upcoming Events
+          Upcoming <span className="text-white">Events</span>
         </h2>
         <div className="space-y-6">
           <div className="bg-gray-800 bg-opacity-80 p-6 rounded-lg shadow-md">

@@ -20,7 +20,7 @@ const About = () => {
 
         <div className="md:w-1/2">
           <h2 className="text-3xl font-bold text-yellow-400 mb-4 relative inline-block">
-            About Us
+            About <span className="text-white">Us</span>
             <span className="block w-16 h-1 bg-yellow-400 mt-1"></span>
           </h2>
 
