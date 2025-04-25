@@ -51,6 +51,14 @@ const BookSeat = () => {
             >
               <h3 className="text-2xl font-bold mb-4 text-center">Book a Table</h3>
               <form className="space-y-4">
+              <select
+            className="w-full px-4 py-2 border border-gray-500 rounded outline-none"
+            required
+          >
+            <option value="">Select Area</option>
+            <option value="bar">Bar</option>
+            <option value="restaurant">Restaurant</option>
+          </select>
                 <input
                   type="text"
                   placeholder="Full Name"
