@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Modal Component with Framer Motion
+// Modal Component
 const Modal = ({ show, onClose, title, children }) => {
   return (
     <AnimatePresence>
@@ -40,45 +40,13 @@ const Modal = ({ show, onClose, title, children }) => {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
-  const [showSignup, setShowSignup] = useState(false);
-
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-  const [loginError, setLoginError] = useState(false);
-
-  const [signupEmail, setSignupEmail] = useState("");
-  const [signupPassword, setSignupPassword] = useState("");
-  const [signupName, setSignupName] = useState("");
-  const [signupError, setSignupError] = useState(false);
+  const [showBooking, setShowBooking] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
-
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    if (!loginEmail || !loginPassword) {
-      setLoginError(true);
-    } else {
-      setLoginError(false);
-      alert("Logged in!");
-      setShowLogin(false);
-    }
-  };
-
-  const handleSignupSubmit = (e) => {
-    e.preventDefault();
-    if (!signupName || !signupEmail || !signupPassword) {
-      setSignupError(true);
-    } else {
-      setSignupError(false);
-      alert("Registered successfully!");
-      setShowSignup(false);
-    }
-  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -125,7 +93,7 @@ const Navbar = () => {
         }`}
       >
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="text-3xl md:text-4xl font-bold tracking-wider text-yellow-400 ">
+          <div className="text-3xl md:text-4xl font-bold tracking-wider text-yellow-400">
             <NavLink to="/">
               <span className="text-white">Miss</span>Ginko
             </NavLink>
@@ -146,16 +114,10 @@ const Navbar = () => {
 
           <div className="hidden md:flex gap-4 items-center">
             <button
-              className="bg-yellow-400 text-white hover:text-gray-900 font-bold px-4 py-2 rounded-full cursor-pointer"
-              onClick={() => setShowSignup(true)}
+              className="bg-yellow-400 text-white hover:text-gray-900 font-bold px-6 py-2 rounded-full cursor-pointer"
+              onClick={() => setShowBooking(true)}
             >
-              Sign Up
-            </button>
-            <button
-              className="text-yellow-400 hover:text-yellow-500 cursor-pointer"
-              onClick={() => setShowLogin(true)}
-            >
-              Login
+              Book Table
             </button>
           </div>
 
@@ -178,88 +140,56 @@ const Navbar = () => {
               {section.charAt(0).toUpperCase() + section.slice(1)}
             </button>
           ))}
-          <div className="flex gap-6 mt-8">
+          <div className="mt-8">
             <button
               className="bg-yellow-400 text-black font-bold px-6 py-2 rounded-full"
               onClick={() => {
                 closeMenu();
-                setShowSignup(true);
+                setShowBooking(true);
               }}
             >
-              Sign Up
-            </button>
-            <button
-              className="text-yellow-400"
-              onClick={() => {
-                closeMenu();
-                setShowLogin(true);
-              }}
-            >
-              Login
+              Book Table
             </button>
           </div>
         </div>
       </header>
 
-      {/* Signup Modal */}
-      <Modal show={showSignup} onClose={() => setShowSignup(false)} title="Sign Up">
-        <form className="space-y-4" onSubmit={handleSignupSubmit}>
+      {/* Booking Table Modal */}
+      <Modal show={showBooking} onClose={() => setShowBooking(false)} title="Book a Table">
+        <form className="space-y-4">
           <input
             type="text"
             placeholder="Full Name"
-            className={`w-full px-4 py-2 border border-gray-500 rounded outline-none ${
-              signupError && !signupName ? "border-red-500 animate-shake" : ""
-            }`}
-            value={signupName}
-            onChange={(e) => setSignupName(e.target.value)}
+            className="w-full px-4 py-2 border border-gray-500 rounded outline-none"
           />
           <input
             type="email"
             placeholder="Email"
-            className={`w-full px-4 py-2 border border-gray-500 rounded outline-none ${
-              signupError && !signupEmail ? "border-red-500 animate-shake" : ""
-            }`}
-            value={signupEmail}
-            onChange={(e) => setSignupEmail(e.target.value)}
+            className="w-full px-4 py-2 border border-gray-500 rounded outline-none"
           />
           <input
-            type="password"
-            placeholder="Password"
-            className={`w-full px-4 py-2 border border-gray-500 rounded outline-none ${
-              signupError && !signupPassword ? "border-red-500 animate-shake" : ""
-            }`}
-            value={signupPassword}
-            onChange={(e) => setSignupPassword(e.target.value)}
-          />
-          <button type="submit" className="bg-yellow-400 w-full py-2 rounded text-white font-bold hover:bg-yellow-500 cursor-pointer">
-            Register
-          </button>
-        </form>
-      </Modal>
-
-      {/* Login Modal */}
-      <Modal show={showLogin} onClose={() => setShowLogin(false)} title="Login">
-        <form className="space-y-4" onSubmit={handleLoginSubmit}>
-          <input
-            type="email"
-            placeholder="Email"
-            className={`w-full px-4 py-2 border border-gray-500 rounded outline-none ${
-              loginError && !loginEmail ? "border-red-500 animate-shake" : ""
-            }`}
-            value={loginEmail}
-            onChange={(e) => setLoginEmail(e.target.value)}
+            type="date"
+            className="w-full px-4 py-2 border border-gray-500 rounded outline-none"
           />
           <input
-            type="password"
-            placeholder="Password"
-            className={`w-full px-4 py-2 border border-gray-500 rounded outline-none ${
-              loginError && !loginPassword ? "border-red-500 animate-shake" : ""
-            }`}
-            value={loginPassword}
-            onChange={(e) => setLoginPassword(e.target.value)}
+            type="time"
+            className="w-full px-4 py-2 border border-gray-500 rounded outline-none"
           />
-          <button type="submit" className="bg-yellow-400 w-full py-2 rounded text-white font-bold hover:bg-yellow-500 cursor-pointer">
-            Login
+          <input
+            type="number"
+            placeholder="Number of Guests"
+            className="w-full px-4 py-2 border border-gray-500 rounded outline-none"
+          />
+          <button
+            type="submit"
+            className="bg-yellow-400 w-full py-2 rounded text-white font-bold hover:bg-yellow-500 cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              alert("Table booked successfully!");
+              setShowBooking(false);
+            }}
+          >
+            Confirm Booking
           </button>
         </form>
       </Modal>
