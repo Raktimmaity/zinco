@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import avator from '../assets/img/avator.jpg';
 
 const testimonials = [
   {
@@ -76,7 +77,8 @@ const Reviews = () => {
               >
                 <div className="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-yellow-400/30 transition text-center">
                   <img
-                    src={t.avatar}
+                    // src={t.avatar}
+                    src={avator}
                     alt={t.name}
                     className="w-16 h-16 rounded-full mx-auto mb-4 border-2 border-yellow-400"
                   />

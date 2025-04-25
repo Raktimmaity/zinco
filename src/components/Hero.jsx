@@ -3,32 +3,37 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   const videoRef = useRef(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [status, setStatus] = useState('closed'); // 'open', 'closed', 'openingSoon', 'closingSoon'
 
-  // Time check logic
   const checkBarStatus = () => {
-    // const now = new Date();
-    // const hours = now.getHours();
-
-    // // Open from 6 PM (18) to 2 AM (2)
-    // const open = (hours >= 11 || hours < 2);
     const now = new Date();
-    const currentHour = now.getHours();
-    const currentMinute = now.getMinutes();
+    const hour = now.getHours();
+    const minute = now.getMinutes();
 
-    // Open from 12:00 PM (12:00) to 11:15 PM (23:15)
-    const isAfterOpening = currentHour > 12 || (currentHour === 12 && currentMinute >= 0);
-    // const isBeforeClosing = currentHour < 23 || (currentHour === 12 && currentMinute <= 46);
-    const isBeforeClosing = currentHour < 23 || (currentHour === 23 && currentMinute <= 15);
+    const totalMinutes = hour * 60 + minute;
 
-    const open = isAfterOpening && isBeforeClosing;
+    const openingTime = 12 * 60; // 12:00 PM = 720
+    const closingTime = 23 * 60 + 15; // 11:15 PM = 1395
 
-    setIsOpen(open);
+    const openingSoonStart = 11 * 60 + 45; // 11:45 AM = 705
+    const closingSoonStart = 23 * 60; // 11:00 PM = 1380
+
+    if (totalMinutes >= openingSoonStart && totalMinutes < openingTime) {
+      setStatus('openingSoon');
+    } else if (totalMinutes >= openingTime && totalMinutes <= closingTime) {
+      if (totalMinutes >= closingSoonStart) {
+        setStatus('closingSoon');
+      } else {
+        setStatus('open');
+      }
+    } else {
+      setStatus('closed');
+    }
   };
 
   useEffect(() => {
     checkBarStatus(); // initial check
-    const interval = setInterval(checkBarStatus, 1000); // update every minute
+    const interval = setInterval(checkBarStatus, 1000); // update every second
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible' && videoRef.current) {
@@ -44,6 +49,35 @@ const Hero = () => {
       clearInterval(interval);
     };
   }, []);
+
+  const renderStatusMessage = () => {
+    switch (status) {
+      case 'openingSoon':
+        return (
+          <div className="mb-6 font-semibold inline-block py-2 px-4 rounded-xl bg-yellow-600 animate-pulse">
+            Opening Soon at 12:00 PM
+          </div>
+        );
+      case 'closingSoon':
+        return (
+          <div className="mb-6 font-semibold inline-block py-2 px-4 rounded-xl bg-orange-600 animate-pulse">
+            Closing Soon at 11:15 PM
+          </div>
+        );
+      case 'open':
+        return (
+          <div className="mb-6 font-semibold inline-block py-2 px-4 rounded-xl bg-green-600 animate-pulse">
+            We are Open Now
+          </div>
+        );
+      default:
+        return (
+          <div className="mb-6 font-semibold inline-block py-2 px-4 rounded-xl bg-red-600">
+            Currently Closed
+          </div>
+        );
+    }
+  };
 
   return (
     <section
@@ -73,13 +107,15 @@ const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Where Nights Come <span className='text-yellow-500'> Alive</span></h1>
-        <p className="mb-6 text-lg md:text-xl">Asian, Chinese, Thai, Momos, Salad, Desserts</p>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          Where Nights Come <span className="text-yellow-500">Alive</span>
+        </h1>
+        <p className="mb-6 text-lg md:text-xl">
+          Asian, Chinese, Thai, Momos, Salad, Desserts
+        </p>
 
-        {/* Open/Closed Status */}
-        <div className={`mb-6 font-semibold inline-block py-2 px-3 rounded-xl ${isOpen ? 'bg-green-600 animate-pulse' : 'bg-red-600'}`}>
-          {isOpen ? 'We are Open Now' : 'Currently Closed'}
-        </div>
+        {/* Dynamic Status Message */}
+        {renderStatusMessage()}
         <br />
         <a
           href="#menu"
