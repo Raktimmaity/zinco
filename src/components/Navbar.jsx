@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-scroll";
+import { Link as ScrollLink, scroller } from "react-scroll";
 import { Menu, X } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
@@ -15,6 +17,38 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleNavClick = (section) => {
+    if (section === "home") {
+      navigate("/");
+    } else if (section === "menu") {
+      navigate("/menu");
+    } else {
+      if (location.pathname === "/") {
+        scroller.scrollTo(section, {
+          smooth: true,
+          duration: 600,
+          offset: -70,
+        });
+      } else {
+        navigate("/", { state: { scrollTo: section } });
+      }
+    }
+    closeMenu();
+  };
+
+  // Scroll on homepage load if needed
+  useEffect(() => {
+    if (location.pathname === "/" && location.state?.scrollTo) {
+      scroller.scrollTo(location.state.scrollTo, {
+        smooth: true,
+        duration: 600,
+        offset: -70,
+      });
+    }
+  }, [location]);
+
+  const sections = ["home", "about", "menu", "gallery", "events", "contact"];
 
   return (
     <header
@@ -32,23 +66,16 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex gap-8 items-center text-sm md:text-lg">
-          {["home", "about", "menu", "gallery", "events", "contact"].map(
-            (section) => {
-              const path = section === "home" ? "/" : `/${section}`;
-              return (
-                <NavLink
-                  key={section}
-                  to={path}
-                  smooth={true}
-                  duration={600}
-                  className="text-white cursor-pointer relative group"
-                >
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
-                  <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
-                </NavLink>
-              );
-            }
-          )}
+          {sections.map((section) => (
+            <button
+              key={section}
+              onClick={() => handleNavClick(section)}
+              className="text-white cursor-pointer relative group bg-transparent"
+            >
+              {section.charAt(0).toUpperCase() + section.slice(1)}
+              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
+            </button>
+          ))}
         </nav>
 
         {/* Auth Buttons */}
@@ -73,20 +100,15 @@ const Navbar = () => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {["home", "about", "menu", "gallery", "events", "contact"].map(
-          (section) => (
-            <NavLink
-              key={section}
-              to={section}
-              smooth={true}
-              duration={600}
-              onClick={closeMenu}
-              className="cursor-pointer hover:text-yellow-400"
-            >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
-            </NavLink>
-          )
-        )}
+        {sections.map((section) => (
+          <button
+            key={section}
+            onClick={() => handleNavClick(section)}
+            className="cursor-pointer hover:text-yellow-400 bg-transparent"
+          >
+            {section.charAt(0).toUpperCase() + section.slice(1)}
+          </button>
+        ))}
         <div className="flex gap-6 mt-8">
           <button className="bg-yellow-400 text-black font-bold px-6 py-2 rounded-full">
             Sign Up
