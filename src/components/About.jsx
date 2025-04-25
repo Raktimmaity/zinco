@@ -8,7 +8,7 @@ const About = () => {
         {/* Image with background shape */}
         <div className="w-full md:w-1/2 relative flex justify-center items-center">
           {/* Yellow Rectangular Shape Behind Image */}
-          <div className="absolute top-4 left-4 w-[85%] md:w-[400px] h-full bg-yellow-400 rounded-xl z-0" />
+          <div className="absolute top-4 left-12 w-[85%] md:w-[400px] h-full bg-yellow-400 rounded-xl z-0" />
 
           {/* Main Image */}
           <img
