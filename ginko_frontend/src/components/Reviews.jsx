@@ -70,7 +70,7 @@ const Reviews = () => {
             {testimonials.map((t, i) => (
               <motion.div
                 key={i}
-                className="min-w-full flex-shrink-0 px-6"
+                className="w-full flex-shrink-0 px-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}

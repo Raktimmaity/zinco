@@ -40,17 +40,6 @@ function Home(){
           <Footer/>
         </>
       )
-    },
-    {
-      path: "/about",
-      element:(
-        <>
-          <Navbar/>
-          <About/>
-          <Contact/>
-          <Footer/>
-        </>
-      )
     }
   ])
 
