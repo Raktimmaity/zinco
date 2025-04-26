@@ -11,6 +11,7 @@ import Reviews from './components/Reviews';
 import BookSeat from './components/BookSeat';
 import MenuPage from './components/Menu';
 import Menu from './components/Menu';
+import Offers from './components/Offers';
 
 function Home(){
 
@@ -23,6 +24,7 @@ function Home(){
         <Hero/>
         <About/>
         <Gallery />
+        <Offers/>
         <Events />
         <Reviews/>
         <BookSeat/>
